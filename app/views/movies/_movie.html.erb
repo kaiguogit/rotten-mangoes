@@ -1,6 +1,14 @@
-<%= link_to image_tag(movie.image.thumb.url), movie_path(movie) if movie.image.thumb && movie.image.thumb.url %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= movie.release_date %></h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-  <p><%= movie.description %></p>
-  <hr>
+<tr>
+  <td>
+    <div>
+    <%= link_to image_tag(movie.image.url), movie_path(movie) if movie.image && movie.image.url %>
+    </div>  
+  </td>
+  <td>
+      <h2><%= link_to movie.title, movie_path(movie) %></h2>
+      <h3>Release date: <%= movie.release_date.strftime("%m/%d/%Y") %></h3>
+      <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
+      <p><%= movie.description %></p>
+      <hr>
+  </td>
+</tr>
