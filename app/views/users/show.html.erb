@@ -1,3 +1,9 @@
+<%= link_to "Back to all movies", movies_path %>
 <h3>Email: <%= @user.email %></h3>
 <h3>Firstname: <%= @user.firstname %></h3>
 <h3>Lastname: <%= @user.lastname %></h3>
+<hr>
+<h3>Reviews: </h3>  
+<% @user.reviews.each do |review| %>
+  <%= render partial: 'review', locals: {review: review} %>
+<% end %>
