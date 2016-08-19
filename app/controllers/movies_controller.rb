@@ -1,20 +1,20 @@
 class MoviesController < ApplicationController
   def index
-    filtered = Movie.all
+    @movies = Movie.all
     if params[:title] || params[:director] 
-      filtered = filtered.where("title like :title AND director like :director", :title => "%#{params[:title]}%", :director => "%#{params[:director]}%")
+      @movies = @movies.where("title like :title AND director like :director", :title => "%#{params[:title]}%", :director => "%#{params[:director]}%")
     end
     case params[:duration]
       when '2' 
-        filtered = filtered.where("runtime_in_minutes <= 90")
+        @movies = @movies.where("runtime_in_minutes <= 90")
       when '3'
-        filtered = filtered.where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120")
+        @movies = @movies.where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120")
       when '4'
-        filtered = filtered.where("runtime_in_minutes > 120")
+        @movies = @movies.where("runtime_in_minutes > 120")
       else
     end
 
-    @movies = filtered.order(:title).page params[:page]
+    @movies = @movies.order(:title).page params[:page]
   end
 
   def show

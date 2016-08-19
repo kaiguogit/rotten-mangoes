@@ -1,7 +1,20 @@
 <h3>List of users</h3>
-<ul>
-  <% User.all.each do |u|%>
-    <li><%= u.email %></li>
-    <li><%= u.full_name %></li>
-  <% end %>
-</ul>
+<%= link_to "Create New User", new_admin_user_path %>
+<table>
+  <thead>
+    <tr>
+      <th> Email </th>  
+      <th> Full Name </th>  
+    </tr>
+  </thead>
+  <tbody>
+    <% User.all.each do |u|%>
+      <tr>
+        <td><%= u.email %></td>
+        <td><%= u.full_name %></td>
+        <td><%= link_to "Edit", edit_admin_user_path(u) %></td>
+        <td><%= link_to "Delete", admin_user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
