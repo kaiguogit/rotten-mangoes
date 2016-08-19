@@ -1,14 +1,10 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < UsersController
 
   before_filter :restrict_admin_access
 
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-  end
-
-  def new
-    @user = User.new
   end
 
   def edit
@@ -24,6 +20,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    user_params
     if @user.update_attributes(user_params)
       flash.notice = "edited user #{@user.full_name}"
       redirect_to admin_users_path
@@ -45,16 +42,8 @@ class Admin::UsersController < ApplicationController
 
   protected
 
-  def set_user
-    @user = User.find(params[:id])
-  end  
-
-  def user_params
-    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation)
-  end
-
   def is_admin?
-    current_user && current_user.id == 1
+    current_user && current_user.admin == true
   end
 
   def restrict_admin_access
