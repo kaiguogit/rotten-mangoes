@@ -1,0 +1,7 @@
+<h3>List of users</h3>
+<ul>
+  <% User.all.each do |u|%>
+    <li><%= u.email %></li>
+    <li><%= u.full_name %></li>
+  <% end %>
+</ul>
