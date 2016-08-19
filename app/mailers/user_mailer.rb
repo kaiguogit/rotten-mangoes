@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  # default from: 'git@kaiguo.cloud'
+  default from: 'kaiguo1988@gmail.com'
   def account_delete_email(user)
     @user = user
     @url  = 'http://example.com/login'
