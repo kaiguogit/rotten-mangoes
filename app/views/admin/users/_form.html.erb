@@ -1,4 +1,5 @@
-<%= form_for @user do |f| %>
+<%= render partial: 'layouts/validation_errors', locals: {object: @user} %>
+<%= form_for [:admin, @user] do |f| %>
   <div>
     <%= f.label :email %>
     <%= f.text_field :email %>
