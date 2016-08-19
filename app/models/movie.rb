@@ -24,8 +24,8 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_is_in_the_past
 
-  scope :title_like, ->(title) {where('title like :title', :title => "%#{title}%")}
-  scope :director_like, ->(director) {where('title like :director', :director => "%#{director}%")}
+  scope :title_or_director_like, ->(keyword) {where('title like :keyword or director like :keyword', :keyword => "%#{keyword}%")}
+
   scope :duration_less_than_90, ->{where("runtime_in_minutes <= 90")}
   scope :duration_between_90_and_120, ->{where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120")}
   scope :duration_longer_than_120, ->{where("runtime_in_minutes > 120")}  

@@ -1,12 +1,13 @@
 class MoviesController < ApplicationController
   def index
+    # binding.pry
     @movies = Movie.all
-    if params[:title] 
-      @movies = @movies.title_like(params[:title])
+    if params[:keyword]
+      @movies = Movie.title_or_director_like(params[:keyword])
     end
-    if params[:director]
-      @movies = @movies.director_like(params[:director])      
-    end
+    # if params[:director]
+    #   @movies = @movies.director_like(params[:director])      
+    # end
     case params[:duration]
       when '2' 
         @movies = @movies.duration_less_than_90
