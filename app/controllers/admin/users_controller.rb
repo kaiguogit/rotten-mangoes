@@ -2,12 +2,9 @@ class Admin::UsersController < ApplicationController
 
   before_filter :restrict_admin_access
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-  end
-
-  def show
   end
 
   def new
@@ -28,14 +25,17 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to admin_user_path(@user)
+      flash.notice = "edited user #{@user.full_name}"
+      redirect_to admin_users_path
     else
+      flash.notice = "failed to user #{@user.full_name}"
       redirect_to edit_user_path(@user)
     end
   end
   
   def destroy
     if @user.destroy
+      UserMailer.account_delete_email(@user).deliver_now
       flash.notice = "Deleted User #{@user.full_name}"
     else
       flash.notice = "Cannot delete user #{@user.full_name}"
