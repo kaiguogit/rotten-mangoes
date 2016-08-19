@@ -7,15 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(email:"kaiguo@kaiguo.cloud", firstname: "kai", lastname: "guo", password: "123123", admin: true)
-m = Movie.create(title: "test movie", director: "asdf", runtime_in_minutes: 150, description: "some description", release_date: "1988-03-10", image: "001-3d.png", poster_image_url: "asdf")
+
+m = Movie.create(title: "Kubo and the Two Strings (2016)", director: "Travis Knight", \
+ runtime_in_minutes: 101, description: "A young boy named Kubo must locate a magical suit of armor worn by his late father in order to defeat a vengeful spirit from the past.
+",\
+  release_date: "1988-03-10",\
+   remote_image_url: "http://ia.media-imdb.com/images/M/MV5BMjA2Mzg2NDMzNl5BMl5BanBnXkFtZTgwMjcwODUzOTE@._V1_UY209_CR0,0,140,209_AL_.jpg")
 m.reviews.new(user:User.first, text: "first review", rating_out_of_ten: 5)
 m.save
 
-m = Movie.create(title: "test movie", director: "asdf", \
- runtime_in_minutes: 150, description: "some description",\
-  release_date: "1988-03-10", image: "001-3d.png",\
-   poster_image_url: "http://ia.media-imdb.com/images/M/MV5BMjA2Mzg2NDMzNl5BMl5BanBnXkFtZTgwMjcwODUzOTE@._V1_UY209_CR0,0,140,209_AL_.jpg")
-m.reviews.new(user:User.first, text: "first review", rating_out_of_ten: 5)
+m = Movie.new()
+m.remote_image_url = "http://ia.media-imdb.com/images/M/MV5BMjQ2NzYxMDQ2OV5BMl5BanBnXkFtZTgwMDk2MzczOTE@._V1_UX140_CR0,0,140,209_AL_.jpg"
+m.title = "Ben-Hur (2016)"
+m.director = "Timur Bekmambetov"
+m.runtime_in_minutes = 124
+m.description = "The epic story of Judah Ben-Hur (Jack Huston), a prince falsely accused of treason by his adopted brother, an officer in the Roman army. After years at sea, Judah returns to his homeland to seek revenge, but finds redemption.
+"
+m.release_date = "1988-03-10"
 m.save
-
-
