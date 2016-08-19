@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :users, except: [:show]
+    get '/users/:id/enable_preview', to: 'users#enable_preview', as: 'enable'
+    get '/users/disable_preview', to: 'users#disable_preview', as: 'disable'
   end
 
   resources :users, only: [:new, :create, :show]

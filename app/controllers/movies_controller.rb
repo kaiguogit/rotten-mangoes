@@ -9,11 +9,11 @@ class MoviesController < ApplicationController
     #   @movies = @movies.director_like(params[:director])      
     # end
     case params[:duration]
-      when '2' 
+      when 'short' 
         @movies = @movies.duration_less_than_90
-      when '3'
+      when 'medium'
         @movies = @movies.duration_between_90_and_120
-      when '4'
+      when 'long'
         @movies = @movies.duration_longer_than_120
       else
     end

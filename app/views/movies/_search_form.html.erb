@@ -3,6 +3,6 @@
   <%= search_field_tag(:keyword) %>
   <%= label_tag(:duration, "Duration") %>
   <%= select_tag(:duration,
-  options_for_select([['',1],['< 90 mins', 2], ['Between 90 and 120 mins', 3], ['> 120 mins', 4]])) %>
+  options_for_select([['',"empty"],['< 90 mins', "short"], ['Between 90 and 120 mins', "medium"], ['> 120 mins', "long"]])) %>
   <%= submit_tag("Search") %>
 <% end %>

@@ -1,12 +1,18 @@
 <footer>
   <small>
     <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path, method: :delete %>)
-      <%= link_to "My Profile", user_path(current_user) %>
+      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path, {method: :delete, class: "btn btn-danger"} %>)
+      <%= link_to "My Profile", user_path(current_user), {class: "btn btn-default"} %>
     <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+      <%= link_to "Log In", new_session_path, {class: "btn btn-primary"} %> | <%= link_to "Sign Up", new_user_path,  {class: "btn btn-warning"} %>
     <% end %>
-      <%= link_to "Admin Access", admin_users_path %>
+    <% if is_admin? %>
+      <%= link_to "Admin Access", admin_users_path, {class: "btn btn-success"} %>
+      <% if preview_mode? %>
+      <%= link_to "Go back as Admin", admin_disable_path, {class: "btn btn-success"} %>
+      <% end %>
+      
+    <% end %>
   </small>
 
 </footer>

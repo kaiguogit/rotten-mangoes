@@ -13,7 +13,9 @@
       <tr>
         <td><%= u.email %></td>
         <td><%= u.full_name %></td>
+        <td><%= link_to "Preview mode", admin_enable_path(u) %></td>
         <td><%= link_to "Edit", edit_admin_user_path(u) %></td>
+        <td><%= link_to "Profile", user_path(u) %></td>
         <td><%= link_to "Delete", admin_user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
