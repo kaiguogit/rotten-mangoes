@@ -32,7 +32,7 @@ class Admin::UsersController < UsersController
   
   def destroy
     if @user.destroy
-      UserMailer.account_delete_email(@user).deliver_now
+      UserMailer.account_delete_email(@user).deliver_later
       flash.notice = "Deleted User #{@user.full_name}"
     else
       flash.notice = "Cannot delete user #{@user.full_name}"
