@@ -1,0 +1,10 @@
+<%= form_tag("/movies", method:"get") do %>
+  <%= label_tag(:title, "Search For") %>
+  <%= text_field_tag(:title) %>
+  <%= label_tag(:director, "Director") %>
+  <%= text_field_tag(:director) %>
+  <%= label_tag(:duration, "Duration") %>
+  <%= select_tag(:duration,
+  options_for_select([['',1],['< 90 mins', 2], ['Between 90 and 120 mins', 3], ['> 120 mins', 4]])) %>
+  <%= submit_tag("Submit") %>
+<% end %>
