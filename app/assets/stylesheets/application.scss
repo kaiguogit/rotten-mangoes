@@ -14,3 +14,17 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.movie_list_item{
+  background-color: #f6f6f5;
+}
+.movie_list_image{
+  float: left;
+}
+.movie_list_info{
+  padding-left: 2%;
+  float: left;
+  width: 50%;
+}
+.movie_list_description{
+  clear:both;
+}
