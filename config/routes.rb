@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do 
-    resources :users
+    resources :users, except: [:show]
   end
 
   resources :users, only: [:new, :create]
