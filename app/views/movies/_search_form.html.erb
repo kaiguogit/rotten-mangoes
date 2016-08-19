@@ -1,8 +1,6 @@
-<%= form_tag("/movies", method:"get") do %>
-  <%= label_tag(:title, "Search For") %>
-  <%= text_field_tag(:title) %>
-  <%= label_tag(:director, "Director") %>
-  <%= text_field_tag(:director) %>
+<%= form_tag("/movies", {method:"get", role: "search"}) do %>
+  <%= label_tag("Search For") %>
+  <%= search_field_tag(:keyword) %>
   <%= label_tag(:duration, "Duration") %>
   <%= select_tag(:duration,
   options_for_select([['',1],['< 90 mins', 2], ['Between 90 and 120 mins', 3], ['> 120 mins', 4]])) %>
