@@ -4,11 +4,17 @@
 <hr>
   <%= render "search_form"%>
 <hr>
-<table>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <%= render partial: 'movie', locals: {movie: movie} %>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <% @movies.each_slice(3) do |movie_slice| %>
+    <div class="row">
+      <% movie_slice.each do |movie| %>
+        <div class="col-md-4">
+          <div class="movie_list_item">
+            <%= render partial: 'movie', locals: {movie: movie} %>            
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 <%= paginate @movies%>
