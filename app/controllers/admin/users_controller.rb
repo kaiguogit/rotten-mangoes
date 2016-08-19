@@ -40,11 +40,21 @@ class Admin::UsersController < UsersController
     redirect_to admin_users_path
   end 
 
+  def enable_preview
+    admin_id = session[:user_id]
+    session[:user_id] = params[:id]
+    session[:admin_id] = admin_id
+    redirect_to movies_path
+  end
+
+  def disable_preview
+    session[:user_id] = session[:admin_id]
+    session[:admin_id] = nil
+    redirect_to admin_users_path
+  end
+
   protected
 
-  def is_admin?
-    current_user && current_user.admin == true
-  end
 
   def restrict_admin_access
     unless is_admin?
