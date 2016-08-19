@@ -5,7 +5,11 @@
     <h3><%= formatted_date(@movie.release_date) %></h3>
     <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
     <p><%= @movie.description %></p>
-    <p><%= @movie.review_average %>/10</p> 
+    <p><%= @movie.review_average %>/10</p>  
+    <p>
+      <strong>Image:</strong>
+      <%= image_tag @movie.image.thumb.url %>
+    </p>
     <hr>
 
     <h3>Reviews of <em><%= @movie.title %></em></h3>
