@@ -15,3 +15,34 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+$(function () {
+ 
+  $("#rateYo").rateYo({
+    rating: 1,
+    fullStar: true
+  });
+
+  $(".rateYo-review").each(function(i,obj){
+    $(obj).rateYo({
+      rating: $(obj).attr("data-rating"),
+      fullStar: true,
+      readOnly: true,
+      starWidth: "20px"
+    });
+  });
+  
+  $(".rateYo-review-average").each(function(i,obj){
+    $(obj).rateYo({
+      rating: $(obj).attr("data-rating"),
+      readOnly: true
+    });
+  });
+
+  $("#rateYo").rateYo()
+              .on("rateyo.change", function (e, data) {
+  
+                var rating = data.rating;
+                $(this).next().val(rating);
+              });
+});

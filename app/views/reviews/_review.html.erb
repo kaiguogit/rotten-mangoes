@@ -1,0 +1,10 @@
+<div class="review-wrap">
+  <div class="review-info">
+    <div class="rateYo-review" data-rating="<%= review.rating_out_of_ten %>"></div>
+    <strong>User: </strong><%= review.user.full_name %>
+    <strong>Created at:</strong><%= formatted_date(review.created_at) %>
+  </div>
+  <div class="review-text">
+    <p><%= review.text %></p>
+  </div>
+</div>
