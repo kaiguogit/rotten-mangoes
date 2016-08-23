@@ -8,7 +8,7 @@
   <% @movies.each_slice(3) do |movie_slice| %>
     <div class="row">
       <% movie_slice.each do |movie| %>
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <div class="movie_list_item">
             <%= render partial: 'movie', locals: {movie: movie} %>            
           </div>
