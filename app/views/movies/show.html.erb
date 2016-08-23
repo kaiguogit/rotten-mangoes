@@ -1,25 +1,54 @@
 <%= link_to "Back to all movies", movies_path %><br/>
 
-    <%= link_to image_tag(@movie.image.thumb.url), movie_path(@movie) if @movie.image.url %>
-    <h2><%= @movie.title %> (<%= link_to "edit", edit_movie_path(@movie) %>, <%= link_to "delete", movie_path(@movie), method: :delete, confirm: "You sure?" %>)</h2>
-    <h3><%= formatted_date(@movie.release_date) %></h3>
-    <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
-    <p><%= @movie.description %></p>
-    <p><%= @movie.review_average %>/10</p>  
-    <p>
-      <strong>Image:</strong>
-      <%= image_tag @movie.image.url if @movie.image.url%>
-    </p>
-    <hr>
+<h2><%= @movie.title %> (<%= link_to "edit", edit_movie_path(@movie) %>, <%= link_to "delete", movie_path(@movie), method: :delete, confirm: "You sure?" %>)</h2>
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= image_tag @movie.image.url if @movie.image.url%>
+          </div>
+          <div class="col-sm-7">
+            <div class="col-sm-3 text-right bold info-title">Rating:</div>
+            <div class="col-sm-9">
+              <div class="rateYo-review-average" data-rating="<%= @movie.review_average %>"></div>
+            </div>
+            <div class="col-sm-3 text-right bold info-title">Description:</div>
+            <div class="col-sm-9 text-left"><%= @movie.description %></div>
+            <div class="col-sm-3 text-right bold info-title">Director:</div>
+            <div class="col-sm-9 text-left"><%= @movie.director %></div>
+            <div class="col-sm-3 text-right bold info-title">Duration:</div>
+            <div class="col-sm-9 text-left"><%= @movie.runtime_in_minutes %> minutes</div>
+            <div class="col-sm-3 text-right bold info-title">Release date:</div>
+            <div class="col-sm-9 text-left"><%= formatted_date(@movie.release_date) %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <h3>Reviews of <em><%= @movie.title %></em></h3>
-    <% if current_user %>
-      <% @movie.reviews.each do |review| %>
-        <p><%= review.text %></p>
-        <p><%= review.rating_out_of_ten %>/10</p>
-        <small>- <%= review.user.full_name %></small><br/>
-      <% end %>
-      <p><%= link_to "Write a review!", new_movie_review_path(@movie) %></p>
-    <% else %>
-      <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
-    <% end %>
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">Reviews of <em><%= @movie.title %></em></div>
+      </div>
+      <div class="panel-body">
+        <% @movie.reviews.each do |review| %>
+              <%= render partial: '/reviews/review', locals: {review: review} %>
+
+        <% end %>
+        <div class="review-form">
+        <% if current_user %>
+          <%= render partial: '/reviews/form', locals: {movie: @movie, review: @review} %>
+        <% else %>
+          <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
